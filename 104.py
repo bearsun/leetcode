@@ -24,3 +24,24 @@ class Solution:
         else:
             maxright = 1
         return max(maxleft,maxright)
+
+    def maxDepth2(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        return self.count(root)
+        
+    def count(self, root):
+        if not root.left and not root.right:
+            return 1
+        dleft = 0
+        dright = 0
+        if root.left:
+            dleft = self.count(root.left)
+        if root.right:
+            dright = self.count(root.right)
+        dcur = max(dleft,dright) + 1
+        return dcur
